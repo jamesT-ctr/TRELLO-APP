@@ -1,0 +1,12 @@
+.logo{
+    display: flex;
+    h1{
+        font-family: "Lilita One", sans-serif;
+        color: var(--colorLogo);
+    }
+    h6{
+        font-family: "Montserrat", sans-serif;
+        color: var(--colorSubtext);
+        align-self: flex-end;
+    }
+}
