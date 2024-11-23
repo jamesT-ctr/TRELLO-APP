@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import { Home }from './components/pages/home/home'
+import { Login } from './components/pages/login/loginPages'
+
 
 
 
@@ -12,10 +14,8 @@ function App() {
   return (
     
     <Routes>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Marck+Script&family=Passions+Conflict&display=swap');
-      </style>
       <Route path='/' element={<Home/>}/>   
+      <Route path='/login' element={<Login/>}/>
     </Routes>
   )
 }

@@ -1,8 +1,14 @@
-import { HeaderHome } from "../../layout/headerHome/headerHome"
+import { body } from "express-validator"
+import { HeaderHome } from "../../layout/home/headerHome/headerHome"
+import { SectionHome } from "../../layout/home/sectionHome/sectionHome"
+import './home.css'
 export const Home = () => {
     
     return (
-        
-        <HeaderHome />
+        <body className="body">
+            <HeaderHome />
+            <SectionHome />
+        </body>
+
     )
 }

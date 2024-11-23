@@ -1,10 +1,15 @@
 import './logo.css'
+import { Link } from 'react-router-dom'
 
 export const Logo = () => {
     return (
-        <div className='logo'>
-            <h1 >TRELLO</h1>
-            <h6>.com</h6>
+
+            <div className='logo'>
+                <Link to={'/'} className='link'>
+                <div className='logotype'></div>
+                <h1 >TRELLO</h1>
+            </Link>
         </div>
+
     )
 }

@@ -1,12 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
+
 .logo{
-    display: flex;
-    h1{
-        font-family: "Lilita One", sans-serif;
-        color: var(--colorLogo);
+
+    .link{
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--colorTitle);
+        background-color: var(--backgroundColor);
+
+        .logotype{
+            width: 25px;
+            height: 25px;
+            background-color: var(--colorTitle);
+            margin-right: 15px;
+            transform: rotate(50deg);
+        }
+    
+        h1{
+            color: var(--colorTitle);
+            font-family: "DM Sans", sans-serif;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            text-transform: uppercase;
+    
+        }
     }
-    h6{
-        font-family: "Montserrat", sans-serif;
-        color: var(--colorSubtext);
-        align-self: flex-end;
-    }
+    
+
 }
+
+
+
+

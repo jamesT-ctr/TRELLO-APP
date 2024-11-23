@@ -1,0 +1,107 @@
+
+.container-log {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+
+  .cards {
+    width: 400px;
+    height: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color:var(--colorSubtext);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+
+
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        input{
+            width: 250px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          
+          button:hover {
+            background-color: #45a049;
+          }
+          
+
+          a {
+            color: #007bff;
+            text-decoration: none;
+          }
+          
+          a:hover {
+            text-decoration: underline;
+          }
+          
+
+    }
+  }
+
+  .show-register {
+    opacity: 1;
+    display:block;
+    transform: translateY(0); 
+    visibility: visible; 
+    z-index: 2; 
+  }
+  
+ 
+  .show-login {
+    opacity: 1;
+    display: block;
+    transform: translateY(0); 
+    visibility: visible; 
+    z-index: 1; 
+  }
+
+
+
+
+/*responsive*/
+
+@media screen and (max-width: 820px) {
+    .container-log {
+        height: 100vh;
+    }
+   .cards{
+        width: 100%;
+        h2{
+            font-size: 50px;
+
+        }
+
+    }
+    
+    input{
+        padding: 20px;
+        font-size: 50px;
+    }
+}
+

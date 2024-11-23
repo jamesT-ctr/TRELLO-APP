@@ -20,10 +20,14 @@ const User = sequelize.define('user', {
     passwordUser: {
         type: DataTypes.STRING,
         allowNull: false
-    },
+    }
     }, {
     tableName: 'users',  // Nombre de la tabla en la base de datos
     timestamps: false        // Si no tienes createdAt y updatedAt en tu tabla
 });
+
+sequelize.sync(User, {
+    force: true  // `force: true` borra las tablas existentes y las recrea
+})
 
 module.exports = User;

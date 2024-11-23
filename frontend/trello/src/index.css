@@ -1,5 +1,7 @@
 :root {
   --backgoundColor: #000000;
-  --colorLogo: #049DD9;
+  --colorPrimary: #23dcfd;
+  --colorSubtext: #9B9B9B;
+  --colorTitle: #e9e9e9;
 
 }
