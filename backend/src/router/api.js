@@ -1,4 +1,4 @@
-const { getUsers, postUsers, loginUser, forgotPassword, resetPassword} = require('../controllers/userController');
+const { getUsers, postUsers, loginUser, forgotPassword, resetPassword, dashboard} = require('../controllers/userController');
 const {getProjects, createProject, updateProject, deleteProject } = require('../controllers/proyectController');
 const { getTasks, createTask, updateTask, deleteTask } = require('../controllers/taskController');
 const { userValidation, validate } = require('../validations/userValidation');
@@ -13,6 +13,8 @@ router.post('/login', loginUser);
 // recovery password
 router.post('/recovery', forgotPassword );
 router.post('/recovery/:token', resetPassword)
+// saludar
+router.get('/dashboard', dashboard )
 // projects
 
 router.get("/projects", getProjects);

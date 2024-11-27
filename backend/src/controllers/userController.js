@@ -160,11 +160,31 @@ const resetPassword = async (res, req) => {
 }
 
 
+// saludar
+
+const dashboard = async (req, res) => {
+    const token = req.headers['authorization']?.split(' ')[1];
+    
+    if (!token) return res.status(401).send('No autorizado');
+
+    jwt.verify(token, 'mi_clave_secreta', (err, decoded) => {
+        if (err) return res.status(401).send('Token no válido');
+        res.json({ mensaje: `Bienvenido al Dashboard de ${decoded.username}`, userId: decoded.id });
+    });
+
+}
+
+
+
+
+
+
 
 module.exports = {
     getUsers,
     postUsers,
     loginUser,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    dashboard
 }

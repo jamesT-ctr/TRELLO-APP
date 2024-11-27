@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';  // Asegúrate de importar axios
 import './loginLayout.css';
 import { useNavigate } from 'react-router-dom';
+import ReactPlayer from 'react-player'
+import Video from '../../../../assets/video.mp4'
 
 export const LoginLayout = () => {
   const navigate = useNavigate()
@@ -34,14 +36,30 @@ export const LoginLayout = () => {
     try {
       const response = await axios.post('http://localhost:3000/api/login', {
         email: formData.email,
-        password: formData.password
+        passwordUser: formData.password
       });
+      const onLogin = (e) => {
+        e.preventDefault();
+      }
+
+
       console.log('Login exitoso:', response.data);
-      // Redirige o actualiza la UI como desees
-      navigate('/dashboard');
+      
+      localStorage.setItem('token', response.data.token);
+
+      navigate('/dashboard', {
+        replace: true,
+        state: {
+          logged: true,
+          user: response.data.user,
+          token: response.data.token,
+          
+        }
+      });
     } catch (error) {
       console.error('Error en el login:', error);
       setError('Credenciales incorrectas.');
+      //
     }
   };
 
@@ -56,6 +74,7 @@ export const LoginLayout = () => {
         phone: formData.phone
       });
       console.log('Registro exitoso:', response.data);
+      alert('Registro exit')
       // Redirige o actualiza la UI como desees
     } catch (error) {
       console.error('Error en el registro:', error);
@@ -64,7 +83,18 @@ export const LoginLayout = () => {
   };
 
   return (
+
     <section className="container-log">
+      <div className='video-login'>
+        <ReactPlayer
+          url={Video}
+          playing={true}
+          loop={true}
+          className="video"
+          width='100%'
+          height='100%'
+        />
+      </div>
       {/* Formulario de registro */}
       <div className={`cards ${showRegister ? 'show-register' : ''}`}>
         <form onSubmit={handleRegisterSubmit}>
