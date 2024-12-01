@@ -1,0 +1,15 @@
+.visual-project{
+    display: flex;
+    .Menu-item{
+        margin: 0 5px;
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--colorText);
+        background-color: var(--colorPrimary);
+        padding: 5px;
+        border-radius: 50px;
+        &:hover{
+            color: var(--colorPrimary);
+        }
+    } 
+}

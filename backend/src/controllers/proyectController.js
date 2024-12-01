@@ -1,30 +1,32 @@
-const { Project } = require('../models/projectsModels');
+
+const express = require('express');
+const Project = require('../models/projectsModels')
 
 const getProjects = async (req, res) => {
-try {
-    const projects = await Project.findAll();
-    res.status(200).json(projects);
-} catch (error) {
-    console.error('Error al obtener proyectos:', error);
-    res.status(500).json({ message: 'Hubo un error al obtener los proyectos' });
-}
-};
-
-const createProject = async (req, res) => {
-const { name, description, user_id } = req.body;
-
-try {
-    const newProject = await Project.create({
-        name,
-        description,
-        user_id,
-    });
-    res.status(201).json(newProject);
-} catch (error) {
-    console.error('Error al crear el proyecto:', error);
-    res.status(500).json({ message: 'Hubo un error al crear el proyecto' });
+    try {
+        const projects = await Project.findAll();
+        res.json(projects);
+    } catch (error) {
+        console.error('Error al obtener proyectos:', error);
+        res.status(500).json({ message: 'Hubo un error al obtener los proyectos' });
     }
-};
+}
+
+const createProject =  async (req, res) => {
+    try{
+        const { name, description, user_id } = req.body;
+        const newProject = await Project.create({
+            name,
+            description,
+            user_id: req.user.id,
+        });
+        res.status(201).json(newProject);
+    } catch (error) {
+        console.error('Error al crear el proyecto:', error);
+        res.status(500).json({ message: 'Hubo un error al crear el proyecto' });
+    }
+
+}
 
 const updateProject = async (req, res) => {
     const { projectId } = req.params;
@@ -64,10 +66,10 @@ const deleteProject = async (req, res) => {
         res.status(500).json({ message: 'Hubo un error al eliminar el proyecto' });
     }
 };
-
 module.exports = { 
     getProjects,
     createProject, 
     updateProject, 
     deleteProject 
 };
+

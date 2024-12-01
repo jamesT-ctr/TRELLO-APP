@@ -5,9 +5,9 @@ export const Logo = () => {
     return (
 
             <div className='logo'>
-                <Link to={'/'} className='link'>
+            <Link to={'/'} className='link'>
                 <div className='logotype'></div>
-                <h1 >TRELLO</h1>
+                <h1 >Taskify</h1>
             </Link>
         </div>
 

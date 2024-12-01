@@ -12,10 +12,6 @@ export const Dashboard = ()=>{
             <div>
             <MenuLayout />
             </div>
-            <div>
-                
-
-            </div>
         </section>
 
     )

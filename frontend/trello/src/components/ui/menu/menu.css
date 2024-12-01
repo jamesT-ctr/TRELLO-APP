@@ -1,3 +1,4 @@
+
 .container{
     position : fixed;
     top: 120px;
@@ -35,4 +36,20 @@
             }
         }
     }
+}
+
+.container-dash{
+    border: #333 solid ;
+    width: 1410px ;
+    height: 700px;
+    margin-left: 5%;
+    margin-top: 5%;
+    padding: 10px;
+
+
+}
+
+.Menu-item.active {
+    /* Estilo para el ícono activo */
+    color: var(--colorPrimary); /* Color azul para el ícono activo */
 }

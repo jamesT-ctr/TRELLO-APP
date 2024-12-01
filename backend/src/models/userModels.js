@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');  // Importa la conexión de base de datos
+const Project = require('./projectsModels');
 
 // Definir el modelo de Usuario
 const User = sequelize.define('user', {
@@ -26,8 +27,15 @@ const User = sequelize.define('user', {
     timestamps: false        // Si no tienes createdAt y updatedAt en tu tabla
 });
 
-sequelize.sync(User, {
-    force: true  // `force: true` borra las tablas existentes y las recrea
+User.hasMany(Project,{
+    foreignKey: 'user_id',
+    targetKey: 'id'  
 })
+Project.belongsTo(User,{
+    foreignKey: 'user_id',
+    targetKey:'id'
+
+})
+
 
 module.exports = User;

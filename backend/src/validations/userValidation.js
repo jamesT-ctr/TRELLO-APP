@@ -4,7 +4,6 @@ const userValidation = [
     body('nameUser').notEmpty().withMessage('Name is required'),
     body('email').isEmail().withMessage('Invalid email format'),
     body('passwordUser').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
-    body('phone').notEmpty().withMessage('Phone is required'),
 ];
 
 const validate = (req, res, next) => {
@@ -16,3 +15,5 @@ const validate = (req, res, next) => {
 };
 
 module.exports = { userValidation, validate };
+
+
