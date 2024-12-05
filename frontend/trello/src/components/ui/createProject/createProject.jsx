@@ -2,32 +2,46 @@ import { useState } from 'react'
 import './createProject.css'
 import { Link } from 'react-router-dom'
 import { useNavigate  } from 'react-router-dom'
-import { Axios } from 'axios'
+import  axios  from 'axios'
 
 
 
 
 export const CreateProject = ()=>{
-    const [name, setname] = useState('')
-    const [description, setDescription] = useState('');
+    const navigate = useNavigate()
+    const [formData, setFormData] = useState({
+        name: '',
+        description: '',
+        user_id: '',  
+    })
     const [error, setError] = useState(null);
-    
-    
-    const handleSubmit = async(e) =>{
+
+    const handleChange = (e) => {
+        setFormData({...formData, [e.target.name]: e.target.value })
+    }
+
+    // traer ususario logueado
+    const user = localStorage.getItem('Id')
+
+    if (!user) {
+        navigate('/login')
+        return null
+    }
+
+    const handleSubmit = async(e) => {
         e.preventDefault();
-
         try{
-            const response = await Axios.post('http://localhost:3000/api/login', {
-                email: formData.name,
-                description: formData.description
-              });
+            const response = await axios.post('http://localhost:3000/api/projects', {
+                name: formData.name,
+                description: formData.description,
+                user_id: user,
+            });
+            console.log('Proyecto creado:', response.data);
         } catch(err){
-
+            // especificar el error
+            setError('Error al crear el proyecto')
         }
     }
-    
-
-
 
 
     return (
@@ -48,20 +62,20 @@ export const CreateProject = ()=>{
                     type="text"
                     placeholder="Name"
                     name="name"
-                    value={name}
-                    onChange={(e) => setname(e.target.value)}
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                 />
                                 <input
                     type="text"
                     placeholder="Description"
                     name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    value={formData.description}
+                    onChange={handleChange}
                     required
                 />
                 <p>{error}</p>
-                    <button type="submit">Iniciar sesión</button>
+                    <button type="submit">Create Project</button>
                 </form>
                 
             </div>

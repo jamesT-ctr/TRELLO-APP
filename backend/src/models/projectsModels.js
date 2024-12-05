@@ -31,4 +31,11 @@ created_at: {
 timestamps: false,
 });
 
+Project.sync({force: false}).then(() => {
+    console.log('Proyectos creadas con éxito');
+}).catch((error) => {
+    console.error('Hubo un error al crear las tablas:', error);
+});
+
+
 module.exports = Project;

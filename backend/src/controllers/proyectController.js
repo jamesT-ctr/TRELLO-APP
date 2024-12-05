@@ -18,7 +18,7 @@ const createProject =  async (req, res) => {
         const newProject = await Project.create({
             name,
             description,
-            user_id: req.user.id,
+            user_id
         });
         res.status(201).json(newProject);
     } catch (error) {

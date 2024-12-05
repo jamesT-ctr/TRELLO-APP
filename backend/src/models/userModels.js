@@ -37,5 +37,17 @@ Project.belongsTo(User,{
 
 })
 
+// crear tabas a mysql
+
+User.sync({force: false}).then(() => {
+    console.log('Tablas de Usuario creadas con éxito');
+}).catch((error) => {
+    console.error('Hubo un error al crear las tablas:', error);
+});
+
+
+
+
+
 
 module.exports = User;

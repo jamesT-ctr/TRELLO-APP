@@ -3,7 +3,7 @@ const {Sequelize} = require("sequelize");
 
 //conetion mysql
 
-const sequelize = new Sequelize('trello' ,'root' ,'0405',{
+const sequelize = new Sequelize('trello','root', 'Aether01',{
     hostname: 'localhost',
     dialect: 'mysql',
     loggin: false,

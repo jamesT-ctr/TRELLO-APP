@@ -46,6 +46,9 @@ export const LoginLayout = () => {
       console.log('Login exitoso:', response.data);
       
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('Id', JSON.stringify(response.data.user.id));
+      localStorage.setItem('name', JSON.stringify(response.data.user.name));
+
 
       navigate('/dashboard', {
         replace: true,
@@ -53,6 +56,7 @@ export const LoginLayout = () => {
           logged: true,
           user: response.data.user,
           token: response.data.token,
+          id: response.data.user.id
           
         }
       });
