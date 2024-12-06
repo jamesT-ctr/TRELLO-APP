@@ -1,20 +1,30 @@
 import { useState } from 'react'
 import './createProject.css'
 import { Link } from 'react-router-dom'
-import { useNavigate  } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import  axios  from 'axios'
+import { CreateTask } from '../createTask/createTask'
 
 
 
 
 export const CreateProject = ()=>{
     const navigate = useNavigate()
+    const location = useLocation()
     const [formData, setFormData] = useState({
         name: '',
         description: '',
         user_id: '',  
     })
     const [error, setError] = useState(null);
+    const [ isWindowOpen, setIsWindowOpen] = useState(false)
+    const [ data, setData] = useState(null)
+    const [isTaskWindowOpen, setIsTaskWindowOpen] = useState(false);
+    
+
+    const handleOpenWindow = () => {
+        setIsWindowOpen(!isWindowOpen);
+    }
 
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value })
@@ -29,6 +39,7 @@ export const CreateProject = ()=>{
     }
 
     const handleSubmit = async(e) => {
+
         e.preventDefault();
         try{
             const response = await axios.post('http://localhost:3000/api/projects', {
@@ -37,8 +48,12 @@ export const CreateProject = ()=>{
                 user_id: user,
             });
             console.log('Proyecto creado:', response.data);
+            setIsWindowOpen(false)
+            setData(response.data)
+            setIsTaskWindowOpen(true)
+            localStorage.setItem('project_id', response.data.id)
+
         } catch(err){
-            // especificar el error
             setError('Error al crear el proyecto')
         }
     }
@@ -47,7 +62,7 @@ export const CreateProject = ()=>{
     return (
         <section>
             <div className='create-proyect'>
-                <Link className='Link'>
+                <Link className='Link' onClick={handleOpenWindow} >
                     <h2>New Project</h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
                         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
@@ -55,29 +70,40 @@ export const CreateProject = ()=>{
                     </svg>
                 </Link>
             </div>
-            <div className='window-create'>
-                <h2>Creat project</h2>
-                <form action=""onSubmit={handleSubmit} >
-                <input
-                    type="text"
-                    placeholder="Name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                />
-                                <input
-                    type="text"
-                    placeholder="Description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    required
-                />
-                <p>{error}</p>
-                    <button type="submit">Create Project</button>
-                </form>
-                
+            {isWindowOpen && (
+                            <div className='window-create'>
+                            <h2>Create project</h2>
+                            <form action=""onSubmit={handleSubmit} >
+                            <input
+                                type="text"
+                                placeholder="Name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+                                            <input
+                                type="text"
+                                placeholder="Description"
+                                name="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                required
+                            />
+                            <p>{error}</p>
+                            <button type="submit">Create Project</button>
+                            </form>
+                            
+                        </div>
+                        
+            )}
+            {isTaskWindowOpen && (
+                <div>
+                    
+                </div>
+            )}
+            <div>
+                {data && <div>Proyecto creado: {data.name}</div>}
             </div>
         </section>
         

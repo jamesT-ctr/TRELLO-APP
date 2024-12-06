@@ -1,15 +1,29 @@
-.visual-project{
+.section-visual{
     display: flex;
-    .Menu-item{
-        margin: 0 5px;
-        cursor: pointer;
-        text-decoration: none;
-        color: var(--colorText);
-        background-color: var(--colorPrimary);
-        padding: 5px;
-        border-radius: 50px;
-        &:hover{
-            color: var(--colorPrimary);
+    .visual-tasks{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .menu{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            .menu-item{
+                cursor: pointer;
+                text-decoration: none ;
+                color: var(--colorText);
+                &:hover{
+                    color: var(--colorPrimary);
+                }
+            }
+            .menu-item:active{
+                background-color: var(--colorPrimary);
+                color: white;
+            }
+
         }
-    } 
+    }
 }

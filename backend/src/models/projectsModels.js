@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
-const User = require('./userModels'); // Relación con el modelo User
+const User = require('./userModels'); 
+const Task = require('./taskModels') // Relación con el modelo User
 
 const Project = sequelize.define('Project', {
 id: {
@@ -37,5 +38,7 @@ Project.sync({force: false}).then(() => {
     console.error('Hubo un error al crear las tablas:', error);
 });
 
+Task.belongsTo(Project, { foreignKey: 'project_id' });
+Project.hasMany(Task, { foreignKey: 'project_id' });
 
 module.exports = Project;

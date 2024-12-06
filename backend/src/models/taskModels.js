@@ -48,4 +48,11 @@ created_at: {
 timestamps: false,
 });
 
+//relacion con ususario
+
+
+
+
+
+
 module.exports = Task;

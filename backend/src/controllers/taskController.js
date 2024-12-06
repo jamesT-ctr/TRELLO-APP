@@ -1,8 +1,13 @@
-const { Task } = require('../models/taskModels');
+const  Task  = require('../models/taskModels');
+const express = require('express');
 
 const getTasks = async (req, res) => {
+    const { user_id } = req.query;
+
 try {
-    const tasks = await Task.findAll();
+    const tasks = await Task.findAll({
+        where: { assigned_user_id: user_id }
+    });
     res.status(200).json(tasks);
 } catch (error) {
     console.error('Error al obtener tareas:', error);

@@ -37,6 +37,7 @@ Project.belongsTo(User,{
 
 })
 
+
 // crear tabas a mysql
 
 User.sync({force: false}).then(() => {

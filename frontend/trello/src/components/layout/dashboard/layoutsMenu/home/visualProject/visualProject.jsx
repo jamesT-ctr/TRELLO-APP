@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { TasksCompleted } from '../proyects/TasksCompleted/TasksCompleted'
 import { PendingTasks } from '../proyects/PendingTasks/pendingTasks'
 import { TasksProgress } from '../proyects/TasksProgress/TasksProgress'
+import { AllTask } from '../proyects/allTask/allTask'
 
 export const VisualProject = () =>{
     const [componentSelect , setComponentSelect] = React.useState('TasksCompleted')
@@ -16,6 +17,8 @@ export const VisualProject = () =>{
                 return <TasksProgress />;
             case 'PendingTasks':
                 return <PendingTasks />;
+            case 'AllTasks':
+                return <AllTask /> 
             default:
                 return <TasksCompleted />;
         }
@@ -24,26 +27,35 @@ export const VisualProject = () =>{
 
 
     return (
-        <section>
-            <div className="visual-project">
+        <section className='section-visual'>
+            <div className="visual-tasks">
+                <div className='menu'>
+                <Link className='menu-item ' onClick={() => setComponentSelect('AllTasks')}>
+                All tasks
+                </Link>
+
                 
-                <Link  className='Menu-item ' onClick={() => setComponentSelect('TasksCompleted')}>
+                <Link  className='menu-item ' onClick={() => setComponentSelect('TasksCompleted')}>
                 Tasks completed
                 </Link>
             
-                <Link className='Menu-item ' onClick={() => setComponentSelect('TasksProgress')}>
+                <Link className='menu-item ' onClick={() => setComponentSelect('TasksProgress')}>
                 Tasks in progress
                 </Link>
 
-                <Link className='Menu-item ' onClick={() => setComponentSelect('PendingTasks')}>
+                <Link className='menu-item ' onClick={() => setComponentSelect('PendingTasks')}>
                 Pending tasks
                 </Link>
-
+                
+                </div>
+                <div className='container-task'>
+                    {showComponentTask()}
+                 </div>
             </div>
-            <div className='container-projects'>
-                {showComponentTask()}
-
+            <div>
+                
             </div>
+  
         </section>
     )
 }
