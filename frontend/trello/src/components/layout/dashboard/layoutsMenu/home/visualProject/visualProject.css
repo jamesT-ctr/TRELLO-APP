@@ -1,15 +1,29 @@
-.visual-project{
+.container-projects{
+    width: 1500px;
+    height: 15vh;
     display: flex;
-    .Menu-item{
-        margin: 0 5px;
-        cursor: pointer;
-        text-decoration: none;
-        color: var(--colorText);
-        background-color: var(--colorPrimary);
-        padding: 5px;
-        border-radius: 50px;
+    flex-wrap: wrap;
+    background-color: var(--colorSecondary);
+
+    .card{
+        width: 15%;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        transition: box-shadow 0.3s ease;
         &:hover{
-            color: var(--colorPrimary);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
-    } 
+
+        h2{
+            margin-top: 10px;
+        }
+        p{
+            margin-top: 5px;
+        }
+        button{
+            margin-top: 10px;
+        }
+    }
 }

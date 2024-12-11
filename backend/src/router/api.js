@@ -1,5 +1,5 @@
 const { getUsers, postUsers, loginUser, forgotPassword, resetPassword, dashboard} = require('../controllers/userController');
-const {getProjects, createProject, updateProject, deleteProject } = require('../controllers/proyectController');
+const {getProjects, createProject, updateProject, deleteProject, getProjectsUser } = require('../controllers/proyectController');
 const { getTasks, createTask, updateTask, deleteTask } = require('../controllers/taskController');
 const { userValidation, validate } = require('../validations/userValidation');
 const express = require('express');
@@ -21,6 +21,9 @@ router.get("/projects", getProjects);
 router.post("/projects", createProject);
 router.put("/projects/:id", updateProject);
 router.delete("/projects/:id", deleteProject);
+
+router.get("/projects/:userId", getProjectsUser);
+
 
 // Rutas para Tareas
 router.get('/tasks', getTasks);

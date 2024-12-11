@@ -3,6 +3,7 @@ import './createProject.css'
 import { Link } from 'react-router-dom'
 import { useNavigate  } from 'react-router-dom'
 import  axios  from 'axios'
+import { CreateTask } from '../createTask/createTask'
 
 
 
@@ -15,6 +16,8 @@ export const CreateProject = ()=>{
         user_id: '',  
     })
     const [error, setError] = useState(null);
+    const [openWindow, setOpenWindow] = useState(false);
+    const [showTask, setTask] = useState(false);
 
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value })
@@ -22,6 +25,8 @@ export const CreateProject = ()=>{
 
     // traer ususario logueado
     const user = localStorage.getItem('Id')
+    // enviar al localStorage el elemento selecionado con el id del form
+
 
     if (!user) {
         navigate('/login')
@@ -37,17 +42,29 @@ export const CreateProject = ()=>{
                 user_id: user,
             });
             console.log('Proyecto creado:', response.data);
+            setOpenWindow(false)
+            setTask(true)
+            navigate('/dashboard')
         } catch(err){
             // especificar el error
             setError('Error al crear el proyecto')
         }
     }
 
+    // abrir ventana create project al oprimir new project
+    const openWindowCreateProject = () => {
+        setOpenWindow(!openWindow)
+    }
+
+    const handleShowTask = () => {
+        setTask(!showTask)
+    }
+
 
     return (
         <section>
             <div className='create-proyect'>
-                <Link className='Link'>
+                <Link className='Link' onClick={openWindowCreateProject}>
                     <h2>New Project</h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
                         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
@@ -55,30 +72,35 @@ export const CreateProject = ()=>{
                     </svg>
                 </Link>
             </div>
+            {openWindow && 
             <div className='window-create'>
-                <h2>Creat project</h2>
-                <form action=""onSubmit={handleSubmit} >
-                <input
-                    type="text"
-                    placeholder="Name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                />
-                                <input
-                    type="text"
-                    placeholder="Description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    required
-                />
-                <p>{error}</p>
-                    <button type="submit">Create Project</button>
-                </form>
-                
-            </div>
+            <h2>Create project</h2>
+            <form action=""onSubmit={handleSubmit} >
+            <input
+                type="text"
+                placeholder="Name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+            />
+                            <input
+                type="text"
+                placeholder="Description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                required
+            />
+            <p>{error}</p>
+                <button type="submit" >Create Project</button>
+            </form>
+            
+        </div>}
+
+        {showTask && 
+            <CreateTask />
+        }
         </section>
         
     )

@@ -9,6 +9,7 @@ export const DashHome = () =>{
                 <h1> MY DASHBOARD</h1>
                 <div>
                 <CreateProject />
+                
                 </div>
             </div>
             <div>

@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const User = require('./userModels'); // Relación con el modelo User
+const Task = require('./taskModels');
 
 const Project = sequelize.define('Project', {
 id: {
@@ -30,6 +31,11 @@ created_at: {
 }, {
 timestamps: false,
 });
+
+//relacion con las tareas
+
+Project.hasMany(Task, { foreignKey: 'project_id' });
+Task.belongsTo(Project, { foreignKey: 'project_id' });
 
 Project.sync({force: false}).then(() => {
     console.log('Proyectos creadas con éxito');

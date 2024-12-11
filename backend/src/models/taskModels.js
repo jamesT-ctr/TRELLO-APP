@@ -48,4 +48,5 @@ created_at: {
 timestamps: false,
 });
 
+
 module.exports = Task;

@@ -66,10 +66,25 @@ const deleteProject = async (req, res) => {
         res.status(500).json({ message: 'Hubo un error al eliminar el proyecto' });
     }
 };
+
+const getProjectsUser = async (req, res) => {
+    const userId = req.params.userId;  // Captura el parámetro de la URL
+    try {
+    const projects = await Project.findAll({
+      where: { user_id: userId }  // Filtra por el userId
+    });
+    res.json(projects);
+    } catch (error) {
+    console.error('Error al obtener los proyectos:', error);
+    res.status(500).json({ error: 'Error al obtener los proyectos' });
+    }
+
+}
 module.exports = { 
     getProjects,
     createProject, 
     updateProject, 
-    deleteProject 
+    deleteProject,
+    getProjectsUser
 };
 
